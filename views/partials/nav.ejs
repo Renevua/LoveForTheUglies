@@ -1,8 +1,8 @@
 <div class ="nav">
     <ul>
         <li><a <%if(active=="Index" ){%>class="active"<%}%> href='/'>Home</a></li>
-        <li><a href='/Yourpage'>Your Page</a></li>
-        <li><a href='/Login'>Sign Up</a></li>
-        <li><a href='/Events'>Events</a></li>
+        <li><a <%if(active=="Yourpage" ){%>class="active"<%}%> href='/Yourpage'>Your Page</a></li>
+        <li><a <%if(active=="Login" ){%>class="active"<%}%> href='/Login'>Sign Up</a></li>
+        <li><a <%if(active=="Events" ){%>class="active"<%}%> href='/Events'>Events</a></li>
     </ul>
     </div>

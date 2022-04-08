@@ -31,9 +31,8 @@ body {
   }
    
  .active {
-    background-color: #fff;
+    background-color: rgb(33, 226, 107);
     color: #444;
-    cursor: default;
   }
    
   @media screen and (min-width: 600px) {

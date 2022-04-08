@@ -4,13 +4,18 @@
     <head>
         
         <title>Love for the Uglies</title>
-        <nav>
-            <link rel="stylesheet" href="assets/styles/navigation-bar.css">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#yourpage">Your Page</a></li>
-            <li><a href="#login">Sign Up</a></li>
-          </nav>
+        <%- include('../partials/nav', {active: "Yourpage"}) %>
+        <link rel="stylesheet" href="styles/navigation-bar.css">
     </head>
     <body>
+        <p>
+            <header>Username</header>
+            <h1>Insert profile picture here</h1>
+            <h1>Hello username!</h1>
+            <h2>Your recent activity:</h2>
+            <h3>Event 1</h3>
+            <h3>Event 2</h3>
+            <h2>Edit profile</h2>
+        </p>
     </body>
 </html>
