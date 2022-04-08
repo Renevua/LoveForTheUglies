@@ -1,36 +1,12 @@
-<!DOCTYPE html>
-
-<html lang="en">
+<html>
     <head>
-        <meta charset ="utf-8">
-
-        <title>Love for the Uglies</title>
-
-        <link rel = "stylesheet" type="text/css" href ="styles/style.css">
+        <title> Uglies </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+        <script src="app.js"></script>
     </head>
-<body>
-    <header id = "Love for the Uglies">
-        <h1 id ="SiteTitle">Love for the Uglies</h1>
-    </header>
-
-    <nav id ="SiteNavigation">
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Sign-up</a></li>
-        </ul>
-    </nav>
-    <section>
-<header>
-<h1>Your mother</h1>
-</header>
-<p>truly makes great pierogi.</p>
-
-</section>
-<footer id="PageFooter">
-    <a href="#">Legal Stuff</a>
-</footer>
-
-</body>
+    <body ng-app = "Uglies" ng-controller="MainCtrl">
+        <div ng-repeat="post in posts">
+            {{post}}
+        </div>
+    </body>
 </html>
