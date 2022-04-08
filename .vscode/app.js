@@ -13,3 +13,7 @@ $scope.posts = [
     'post 4',
     'post 5'
 ];
+
+$scope.addPost = function(){
+    $scope.posts.push({title: "Another ugly!"});
+}
