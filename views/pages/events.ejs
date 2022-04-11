@@ -7,12 +7,14 @@
         <link rel="stylesheet" href="styles/navigation-bar.css">
     </head>
     <body>
-        <p>
-            <h1>This is event</h1>
-            <h2>Event description</h2>
-            <h3>Location</h3>
-            <h3>Time</h3>
-            <h3>Price</h3>
-        </p>
+        <article class = "events">
+            <% pages.forEach((page)=>{ %>
+            <h1><%= page.Name %></h1>
+            <h2><%= page.Description %></h2>
+            <h3><%= page.Place %></h3>
+            <h3><%= page.Date %></h3>
+            <h3><%= page.Price %></h3>
+            <% }) %>
+        </article>
     </body>
 </html>
