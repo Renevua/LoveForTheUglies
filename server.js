@@ -24,10 +24,21 @@ app.get('/', function (req, res) {
   res.render('pages/index.ejs');
 });
 
-//Redirecting user to the Events
+/*Fetching data of the events 
 app.get('/Events', function (req, res) {
-  res.render('pages/events.ejs');
-});
+  db.collection('Events').find(req.body).toArray(function (err, result) {
+      if (err) throw err;
+      posts = JSON.parse(JSON.stringify(result));
+      if (req.session.loggedin) {
+
+      }
+      res.render('pages/events.ejs', {
+          posts: posts,
+          session: req.session
+      });
+
+  });
+}); */
 
 //Redirecting user to the Login
 app.get('/Login', function (req, res) {
@@ -68,4 +79,20 @@ app.post('/auth', function(request, response) {
 		response.send('Please enter Username and Password!');
 		response.end();
 	}
+});
+
+//Fetching data of the events 
+app.get('/Events', function (req, res) {
+  db.collection('Events').find(req.body).toArray(function (err, result) {
+      if (err) throw err;
+      pages = JSON.parse(JSON.stringify(result));
+      //if (req.session.loggedin) {
+
+      //}
+      res.render('pages/events.ejs', {
+          pages: pages,
+          session: req.session
+      });
+
+  });
 });
