@@ -92,7 +92,7 @@ app.get('/Events', function (req, res) {
       res.render('pages/events.ejs', {
           pages: pages,
           
-          session: JSON.parse(JSON.stringify(req.session))
+          session: (JSON.stringify(req.session))
       });
 
   });
@@ -102,9 +102,14 @@ app.post('/updateEvent', function(req, res){
   var query = { Username: req.session.username };
   var newvalues = {
     $set: {
-      InterestedEvents: req.session.InterestedEvents
+      InterestedEvents: req.body.newInt
     }
   }
+
+  req.session.InterestedEvents = req.body.newInt;
+    
+  console.log(req.session.InterestedEvents)
+  
   db.collection('Logininfo').updateOne(query, newvalues, function (err, result) {
     if (err) throw err;
     res.send("Success");
