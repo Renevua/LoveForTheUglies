@@ -111,6 +111,7 @@ app.get('/Logininfo', function (req, res){
   });
 });
 
+//Fetching ID of the event to add to the user array for InterestedEvents
 app.post('/AddInterested/:event_id', function(req, res) {
   req.params.event_id()
 })
