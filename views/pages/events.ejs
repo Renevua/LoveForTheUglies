@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-
+<script>
+    var Session = '<%- session %>'
+    console.log(Session)
+</script>
 <html>
     <head>
         <title>Love for the Uglies</title>
         <%- include('../partials/nav', {active: "Events"}) %>
+        <script src="scripts\events.js"></script>
         
     </head>
     <body>

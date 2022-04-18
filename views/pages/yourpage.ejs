@@ -1,4 +1,8 @@
 <!DOCTYPE html>
+<script>
+    var Session = '<%- session %>'
+    console.log(Session)
+</script>
 
 <html>
     <head>
@@ -9,9 +13,9 @@
     </head>
     <body>
         <p>
-            <header>Username</header>
+            <header><%= session.username %></header>
             <h1>Insert profile picture here</h1>
-            <h1>Hello!</h1>
+            <h1>Hello <%= session.username %>!</h1>
             <h2>Your recent activity:</h2>
             <h3></h3>
             <button type="button">Edit profile</button>

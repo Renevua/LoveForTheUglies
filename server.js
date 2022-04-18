@@ -27,8 +27,8 @@ MongoClient.connect(process.env.uri, function (err, client) {
 
 //Redirecting user to the correct index page
 app.get('/', function (req, res) {
-  res.render('pages/index.ejs', {
-    session: req.session
+  res.render('pages/index.ejs', {    
+    session: JSON.parse(JSON.stringify(req.session))
   });
 
 });
@@ -36,14 +36,14 @@ app.get('/', function (req, res) {
 //Redirecting user to the Login
 app.get('/Login', function (req, res) {
   res.render('pages/login.ejs', {
-    session: req.session
+    session: JSON.parse(JSON.stringify(req.session))
   });
 });
 
 //Redirecting user to the Your Page
 app.get('/Yourpage', function (req, res) {
   res.render('pages/yourpage.ejs', {
-    session: req.session
+    session: JSON.parse(JSON.stringify(req.session))
 });
 });
 
@@ -57,17 +57,18 @@ app.post('/auth', function(request, response) {
 	// Ensure the input fields exists and are not empty
 	if (username && password) {
 		// Execute DBMongo query that'll select the account from the database based on the specified username and password
-    db.collection('Logininfo').find({ "Username": username }).toArray(function (err, result) {
+    db.collection('Logininfo').find({ "Username": username }).toArray(function (err, results) {
 			// If there is an issue with the query, output the error
-			if (error) throw error;
+			if (err) throw error;
 			// If the account exists
 			if (results.length > 0) {
         if (results[0].Password === password){
 				// Authenticate the user
 				request.session.loggedin = true;
 				request.session.username = username;
+        request.session.InterestedEvents = results[0].InterestedEvents
 				// Redirect to home page
-				response.redirect('/home');
+				response.redirect('/');
         }
 			} else {
 				response.send('Incorrect Username and/or Password!');
@@ -82,18 +83,31 @@ app.post('/auth', function(request, response) {
 
 //Fetching data of the events 
 app.get('/Events', function (req, res) {
-  console.log("HELLO")
   db.collection('Events').find(req.body).toArray(function (err, result) {
       if (err) throw err;
       pages = JSON.parse(JSON.stringify(result));
       //if (req.session.loggedin) {
 
       //}
-      console.log("Pog")
       res.render('pages/events.ejs', {
           pages: pages,
-          session: req.session
+          
+          session: JSON.parse(JSON.stringify(req.session))
       });
 
   });
 });
+
+app.post('/updateEvent', function(req, res){
+  var query = { Username: req.session.username };
+  var newvalues = {
+    $set: {
+      InterestedEvents: req.session.InterestedEvents
+    }
+  }
+  db.collection('Logininfo').updateOne(query, newvalues, function (err, result) {
+    if (err) throw err;
+    res.send("Success");
+  });
+
+})
