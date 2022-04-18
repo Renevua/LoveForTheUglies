@@ -2,9 +2,7 @@ const MongoClient = require('mongodb').MongoClient;
 //const url = "mongodb://localhost:27017/";
 const express = require('express');
 const bodyParser = require('body-parser')
-const cookieParser = require('cookie-parser')
 const app = express();
-app.use(cookieParser);
 require('dotenv').config()
 const session = require('express-session');
 app.use(express.static('./assets'))
@@ -86,55 +84,18 @@ app.post('/auth', function(request, response) {
 
 //Fetching data of the events 
 app.get('/Events', function (req, res) {
+  console.log("HELLO")
   db.collection('Events').find(req.body).toArray(function (err, result) {
       if (err) throw err;
       pages = JSON.parse(JSON.stringify(result));
       //if (req.session.loggedin) {
 
       //}
+      console.log("Pog")
       res.render('pages/events.ejs', {
           pages: pages,
           session: req.session
       });
 
   });
-});
-
-//Fetching data of the users
-app.get('/Logininfo', function (req, res){
-  db.collection('Logininfo').find(req.body).toArray(function (err, result) {
-    if (err) throw err;
-    pages = JSON.parse(JSON.stringify(result));
-    res.render('pages/yourpage.ejs', {
-      pages: pages,
-      session: req.session
-    });
-  });
-});
-
-//Fetching ID of the event to add to the user array for InterestedEvents
-app.post('/AddInterested/:event_id', function(req, res) {
-  req.params.event_id()
-})
-
-//Get route for adding a cookie
-app.get('/setcookie', (req, res) => {
-  res.cookie('Cookie token name', 'encrypted cookie string Value', {
-    secure: true,
-    httpOnly: true,
-    sameSite: 'lax'
-  });
-  res.send('Cookie have been saved successfully');
-})
-
-//get cookie incoming request
-app.get('/getcookie', (req, res) => {
-  console.log(req.cookies)
-  res.send(req.cookies);
-})
-
-//delete saved cookie
-app.get('/deletecookie', (req, res) =>{
-  res.clearCookie()
-  res.send('Cookie has been deleted successfully');
 });
