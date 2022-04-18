@@ -2,6 +2,7 @@ const MongoClient = require('mongodb').MongoClient;
 //const url = "mongodb://localhost:27017/";
 const express = require('express');
 const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 const app = express();
 require('dotenv').config()
 const session = require('express-session');
@@ -9,6 +10,7 @@ app.use(express.static('./assets'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.set('view engine', 'ejs');
 var db;
+
 
 
 
