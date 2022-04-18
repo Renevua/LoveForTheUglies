@@ -11,14 +11,16 @@
 
 }
 
-.description >h2, h3 {
+.description > h2, h3 {
     background-color: white;
 }
 
 .description > h2 {
+    background-color: white;
     margin: 4px;
 }
 
 .description > h3{
+    background-color: white;
     margin: 5px;
 }
