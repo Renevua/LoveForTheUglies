@@ -4,17 +4,9 @@
     <head>
         <title>Love for the Uglies</title>
         <%- include('../partials/nav', {active: "Events"}) %>
-        <link rel="stylesheet" href="styles/navigation-bar.css">
+        
     </head>
     <body>
-        <article class = "events">
-            <% pages.forEach((page)=>{ %>
-            <h1><%= page.Name %></h1>
-            <h2><%= page.Description %></h2>
-            <h3><%= page.Place %></h3>
-            <h3><%= page.Date %></h3>
-            <h3><%= page.Price %></h3>
-            <% }) %>
-        </article>
+        <%- include('../partials/event') %>
     </body>
 </html>
