@@ -10,6 +10,11 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.set('view engine', 'ejs');
 var db;
 
+app.use(session({
+  secret: 'sekret nashych kompyuternych dush',
+  resave: true,
+  saveUninitialized: true
+}));
 
 
 
@@ -66,11 +71,13 @@ app.post('/auth', function(request, response) {
 			if (error) throw error;
 			// If the account exists
 			if (results.length > 0) {
+        if (results[0].Password === password){
 				// Authenticate the user
 				request.session.loggedin = true;
 				request.session.username = username;
 				// Redirect to home page
 				response.redirect('/home');
+        }
 			} else {
 				response.send('Incorrect Username and/or Password!');
 			}			
