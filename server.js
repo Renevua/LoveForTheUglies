@@ -97,6 +97,18 @@ app.get('/Events', function (req, res) {
   });
 });
 
+//Fetching data of the users
+app.get('/Logininfo', function (req, res){
+  db.collection('Logininfo').find(req.body).toArray(function (err, result) {
+    if (err) throw err;
+    pages = JSON.parse(JSON.stringify(result));
+    res.render('pages/yourpage.ejs', {
+      pages: pages,
+      session: req.session
+    });
+  });
+});
+
 app.post('/AddInterested/:event_id', function(req, res) {
   req.params.event_id()
 })
