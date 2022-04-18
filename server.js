@@ -27,33 +27,24 @@ MongoClient.connect(process.env.uri, function (err, client) {
 
 //Redirecting user to the correct index page
 app.get('/', function (req, res) {
-  res.render('pages/index.ejs');
-});
-
-/*Fetching data of the events 
-app.get('/Events', function (req, res) {
-  db.collection('Events').find(req.body).toArray(function (err, result) {
-      if (err) throw err;
-      posts = JSON.parse(JSON.stringify(result));
-      if (req.session.loggedin) {
-
-      }
-      res.render('pages/events.ejs', {
-          posts: posts,
-          session: req.session
-      });
-
+  res.render('pages/index.ejs', {
+    session: req.session
   });
-}); */
+
+});
 
 //Redirecting user to the Login
 app.get('/Login', function (req, res) {
-  res.render('pages/login.ejs');
+  res.render('pages/login.ejs', {
+    session: req.session
+  });
 });
 
 //Redirecting user to the Your Page
 app.get('/Yourpage', function (req, res) {
-  res.render('pages/yourpage.ejs');
+  res.render('pages/yourpage.ejs', {
+    session: req.session
+});
 });
 
 //Login code for users to log in into website
