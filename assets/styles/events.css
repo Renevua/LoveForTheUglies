@@ -5,23 +5,20 @@
     background-color: rgb(190, 190, 190);
 }
 
-.events > h1, .description {
+.events > h1 {
     margin: 10px;
     padding: 5px;
 
 }
 
-.description {
+.description >h2, h3 {
     background-color: white;
 }
 
 .description > h2 {
     margin: 4px;
-    background-color: white;
-
 }
 
 .description > h3{
-    margin: 4px;
-    background-color: white;
+    margin: 5px;
 }

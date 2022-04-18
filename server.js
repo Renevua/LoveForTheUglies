@@ -9,7 +9,7 @@ app.use(express.static('./assets'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.set('view engine', 'ejs');
 var db;
-//module.exports = app;
+
 
 
 MongoClient.connect(process.env.uri, function (err, client) {
@@ -96,3 +96,8 @@ app.get('/Events', function (req, res) {
 
   });
 });
+
+app.post('/AddInterested/:event_id', function(req, res) {
+  req.params.event_id()
+})
+
