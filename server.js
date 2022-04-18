@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const app = express();
+app.use(cookieParser);
 require('dotenv').config()
 const session = require('express-session');
 app.use(express.static('./assets'))
@@ -116,3 +117,24 @@ app.post('/AddInterested/:event_id', function(req, res) {
   req.params.event_id()
 })
 
+//Get route for adding a cookie
+app.get('/setcookie', (req, res) => {
+  res.cookie('Cookie token name', 'encrypted cookie string Value', {
+    secure: true,
+    httpOnly: true,
+    sameSite: 'lax'
+  });
+  res.send('Cookie have been saved successfully');
+})
+
+//get cookie incoming request
+app.get('/getcookie', (req, res) => {
+  console.log(req.cookies)
+  res.send(req.cookies);
+})
+
+//delete saved cookie
+app.get('/deletecookie', (req, res) =>{
+  res.clearCookie()
+  res.send('Cookie has been deleted successfully');
+});
