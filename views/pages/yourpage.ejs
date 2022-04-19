@@ -17,6 +17,9 @@
             <h1>Insert profile picture here</h1>
             <h1>Hello <%= session.username %>!</h1>
             <h2>Your recent activity:</h2>
+            <% for(i =0; i<session.InterestedEvents.length; i++){ %>
+               <h3> <%= session.InterestedEvents[i] %> </h3>
+            <% } %>
             <h3></h3>
             <button type="button">Edit profile</button>
         </p>
