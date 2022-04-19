@@ -1,13 +1,16 @@
+//This piece of code handles signing in and out code from the site itself
+
 $(document).ready(function () {
 
+    //Sign up button below
     $('#signUpButton').click(function () {
         userInfo = {
             Username: $('#username').val(),
             Password: $('#password').val(),
         }
         $.ajax({
-            url: "/signUpUser", // Url of backend (can be python, php, etc..)
-            type: "POST", // data type (can be get, post, put, delete)
+            url: "/signUpUser", 
+            type: "POST", 
             data: userInfo,
             success: function (response, textStatus, jqXHR) {
                 console.log("updated")
@@ -15,11 +18,11 @@ $(document).ready(function () {
             }
         })
     })
-
+    //Signing out button below
     $('#signOut').click(function () {
         $.ajax({
-            url: "/signOut", // Url of backend (can be python, php, etc..)
-            type: "POST", // data type (can be get, post, put, delete)
+            url: "/signOut", 
+            type: "POST", 
             success: function (response, textStatus, jqXHR) {
                 console.log("SignedOut")
                 window.location = '/'

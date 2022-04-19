@@ -1,6 +1,20 @@
+<!--Code for the Partial of the Event-->
+
 <link rel ="stylesheet" href = "styles/events.css">
 <article class = "events">
     <% pages.forEach((page)=>{ %>
+    <div class='indivEvent'>
+        <%
+        <!--Checks if the user is logged in-->
+        <!--If user is logged in then it shows if user signed up for the event or not-->
+        parsedSeas = JSON.parse(session)
+        if(parsedSeas.loggedin !=null &&parsedSeas.loggedin==true){
+            if(parsedSeas.InterestedEvents.includes(page.Name)){%>
+                <h1 id='<%=page.Name %>-SignedLabel'>SIGNED UP</h1>
+            <%}else{%>
+                <h1 id='<%=page.Name %>-SignedLabel'>NOT SIGNED UP</h1>
+            <%}}%>
+
     <h1><%= page.Name %></h1>
     <h2><%= page.Description %></h2>
     <h3><%= page.Place %></h3>
@@ -8,7 +22,8 @@
     <h3><%= page.Price %></h3>
         <button type ="button" id='<%=page.Name %>' class = 'EventButton'>Sign-up for the event</button>
         <button type ="button" id='<%=page.Name %>' class = 'SignOutButton'>Sign out of the event</button>
-    
+    </div>
+    <br>
     <% }) %>
 </article>
 </article>
