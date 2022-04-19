@@ -10,6 +10,7 @@
         <title>Love for the Uglies</title>
         <%- include('../partials/nav', {active: "Yourpage"}) %>
         <link rel="stylesheet" href="styles/navigation-bar.css">
+        <script src="scripts\yourpage.js"></script>
     </head>
     <body>
         <p>
@@ -22,7 +23,15 @@
             <% } %>
             <% } %>
             <h3></h3>
-            <button type="button">Edit profile</button>
+            <br><br>
+
+            <%if(session.username != null){ %>
+            <div id="EditProfile">
+                <label for="ChangeUsername">Change Username:</label>
+                <input class="txt" type="text" id="newUsername" placeholder="<%=session.username%>">
+            <button id="nameChangeButton" type="button">Change Name</button>
+            </div>
+            <% } %>
         </p>
     </body>
 </html>

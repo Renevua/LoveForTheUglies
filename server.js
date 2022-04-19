@@ -109,7 +109,26 @@ app.post('/updateEvent', function(req, res){
   req.session.InterestedEvents = req.body.newInt;
     
   console.log(req.session.InterestedEvents)
-  
+
+  db.collection('Logininfo').updateOne(query, newvalues, function (err, result) {
+    if (err) throw err;
+    res.send("Success");
+  });
+
+})
+
+app.post('/updateUsername', function(req, res){
+  var query = { Username: req.session.username };
+  var newvalues = {
+    $set: {
+      Username: req.body.newName
+    }
+  }
+
+  req.session.username = req.body.newName;
+    
+  console.log(req.session.InterestedEvents)
+
   db.collection('Logininfo').updateOne(query, newvalues, function (err, result) {
     if (err) throw err;
     res.send("Success");
