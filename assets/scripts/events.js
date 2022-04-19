@@ -1,4 +1,7 @@
 $(document).ready(function () {
+    for(i=0; i<Session.InterestedEvents.length();i++){
+        $("#"+Session.InterestedEvents[i]+"SignUp").prop("disabled", true);
+    }
     $('.EventButton').click(function(){
         console.log((Session))
         console.log(Session.InterestedEvents)
