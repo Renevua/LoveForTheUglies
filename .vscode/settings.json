@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/1f6cf815-441d-4400-b834-ab4ef77f3ecf/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/theugliestofanimals",
+    "appService.deploySubpath": "."
+}
