@@ -14,11 +14,12 @@
     <body>
         <p>
             <header><%= session.username %></header>
-            <h1>Insert profile picture here</h1>
             <h1>Hello <%= session.username %>!</h1>
             <h2>Your recent activity:</h2>
+            <% if(session.InterestedEvents != null){%>
             <% for(i =0; i<session.InterestedEvents.length; i++){ %>
                <h3> <%= session.InterestedEvents[i] %> </h3>
+            <% } %>
             <% } %>
             <h3></h3>
             <button type="button">Edit profile</button>
