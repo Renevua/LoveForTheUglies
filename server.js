@@ -135,3 +135,43 @@ app.post('/updateUsername', function(req, res){
   });
 
 })
+
+app.post('/signUpUser', function(req, res){
+
+  userInfo = {
+    Username : req.body.Username,
+    Password : req.body.Password,
+    Admin : false,
+    InterestedEvents : []
+  }
+
+  console.log(userInfo)
+
+  db.collection('Logininfo').insertOne(userInfo, function(err, result){
+    if (err) throw err;
+    req.session.loggedin = true;
+    req.session.username = userInfo.Username;
+    req.session.InterestedEvents = userInfo.InterestedEvents
+    res.redirect("/")
+  })
+
+});
+
+
+app.post('/deleteUser', function(req, res){
+
+  db.collection("Logininfo").deleteOne(req.body, function (err, obj) {
+    if (err) throw err;
+    signOut(req.session)
+    res.redirect('/')
+  });
+});
+
+function signOut(sess) {
+  if (sess.loggedin == true) {
+    sess.loggedin = false;
+    delete sess.username;
+    delete sess.InterestedEvents;
+  }
+  console.log("Signed Out")
+}
