@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const app = express();
 require('dotenv').config()
 const session = require('express-session');
+const res = require('express/lib/response');
 app.use(express.static('./assets'))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.set('view engine', 'ejs');
@@ -167,6 +168,11 @@ app.post('/deleteUser', function(req, res){
   });
 });
 
+app.post('/signOut', function(req,res){
+  signOut(req.session);
+  res.redirect('/')
+})
+
 function signOut(sess) {
   if (sess.loggedin == true) {
     sess.loggedin = false;
@@ -175,3 +181,10 @@ function signOut(sess) {
   }
   console.log("Signed Out")
 }
+
+app.get('/getEvents', function(req, res){
+  db.collection('Events').find().toArray(function (err, result) {
+    if (err) throw err;
+    res.send(result);
+  })
+})

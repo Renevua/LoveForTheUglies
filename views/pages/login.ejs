@@ -17,6 +17,7 @@
 		<script src="scripts/login.js"></script>
 	</head>
 	<body>
+		<% if(session.loggedin == null || session.loggedin==false){%>
 		<div class="login">
 			<h1>Login</h1>
 			<form action="/auth" method="post">
@@ -33,5 +34,9 @@
 				<input type="button" id="signUpButton" value="Sign Up">
 			</form>
 		</div>
+		<%}else{%>
+			<h1>You are already signed in <%=session.username%></h1>
+			<button id="signOut">Sign Out</button>
+		<%}%>
 	</body>
 </html>
